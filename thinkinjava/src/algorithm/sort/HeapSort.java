@@ -19,7 +19,7 @@ public class HeapSort extends SortStrategy {
 		while (i * 2 + 1 < l) {
 			int j = i * 2 + 1;
 			int max = a[j];
-			if (i * 2 + 2 < l && a[i * 2 + 1] < a[i * 2 + 2]){
+			if (j + 1 < l && max < a[j + 1]){
 				j = i * 2 + 2;
 				max = a[j];
 			}

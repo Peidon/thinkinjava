@@ -16,7 +16,7 @@ public class Sorter {
 	private SortStrategy sortStrategy;
 
 	public static void main(String[] args) {
-		int[] arr = new int[] { 38, 5, 47, 26, 27, 44, 46, 55, 34, 2 };
+		int[] arr = new int[] { 38, 5, 47, 26, 27, 44, 46, 55, 34, 2, 11 };
 		Sorter sorter = new Sorter();
 		sorter.setSortStrategy(new HeapSort());
 		sorter.sort(arr);
