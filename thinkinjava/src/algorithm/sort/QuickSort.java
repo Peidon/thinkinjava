@@ -1,7 +1,9 @@
 package algorithm.sort;
 
 
+
 public class QuickSort extends SortStrategy {
+	
 	public void sort(int arr[]) {
 		quickSort(arr, 0, arr.length - 1);
 	}

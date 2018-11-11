@@ -8,8 +8,8 @@ public class GraphNode {
 	public static void main(String[] args) {
 		Scanner cin = new Scanner(System.in);
 		int n = cin.nextInt();
-		GraphNode[] g = new  GraphNode[n];
-		for (int i = 0; i < n; i++) {
+		GraphNode[] g = new  GraphNode[n + 1];// g[0] is not used
+		for (int i = 1; i <= n; i++) {
 			g[i] = new GraphNode(i);
 		}
 		for (int i = 0; i < n - 1; i++) {
@@ -19,13 +19,12 @@ public class GraphNode {
 			g[b].add(a);
 		}
 		int hi = g[1].height();
-		System.out.println(2 * n - hi - 2);
+		System.out.println(2 * (n - 1) - hi);
 		cin.close();
 	}
 	private LinkedList<GraphNode> list = new LinkedList<>();
 	int[] exclusion; // exclude the previous node
 	public int val;
-
 	public GraphNode(int n) {
 		exclusion = new int[n];
 	}
