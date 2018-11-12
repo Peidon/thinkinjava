@@ -15,21 +15,17 @@ public class QuickSort extends SortStrategy {
 		quickSort(a, 0, mi - 1);
 		quickSort(a, mi + 1, r);
 	}
-	private int createPivot(int[] a, int l, int r) {
+	private int createPivot(int[] a, int l, int r) {	
+		int pivot = a[l];
 		while (l < r) {
-			while (l < r && a[l] <= a[r])
+			while (l < r && pivot <= a[r])
 				r--;
-			swap(a, l, r);
-			while (l < r && a[l] <= a[r])
+			a[l] = a[r];
+			while (l < r && a[l] <= pivot)
 				l++;
-			swap(a, l, r);
+			a[r] = a[l];
 		}
+		a[l] = pivot;
 		return l;
-	}
-
-	private void swap(int[] a, int i, int j) {
-		int t = a[i];
-		a[i] = a[j];
-		a[j] = t;
 	}
 }
