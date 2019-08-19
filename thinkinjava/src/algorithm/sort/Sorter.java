@@ -18,7 +18,7 @@ public class Sorter {
 	public static void main(String[] args) {
 		int[] arr = new int[] { 38, 5, 47, 26, 27, 44, 46, 55, 34, 2, 11 };
 		Sorter sorter = new Sorter();
-		sorter.setSortStrategy(new MergeSort(arr));
+		sorter.setSortStrategy(new QuickSort());
 		sorter.sort(arr);
 		for (int i = 0; arr.length > i; i++) {
 			System.out.print(arr[i] + ", ");

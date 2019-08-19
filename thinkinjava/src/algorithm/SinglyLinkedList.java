@@ -1,9 +1,8 @@
 package algorithm;
 
 import java.util.List;
-/**+-------------------------
- * |It's my SinglyLinkedList
- * +-------------------------
+/**
+ * 
  * @author Xu
  * 
  * @param <Object>

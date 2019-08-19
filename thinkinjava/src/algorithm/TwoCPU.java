@@ -3,7 +3,17 @@ package algorithm;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class TwoCPU {// 其实是个背包问题
+/**
+ * 一种双核CPU的两个核能够同时处理任务，现在有n个已知数据量的任务需要交给CPU处理，
+ * 
+ * 假设已知CPU的每个核1秒可以处理1kb，每个核同时只能处理一项任务。
+ * 
+ * n个任务可以按照任意顺序放入CPU进行处理，现在需要设计一个方案让CPU处理完这批任务所需的时间最少， 求这个最小的时间。
+ * 
+ * 思路：在不超过总任务的1/2的情况下，拼凑出最大值。
+ * 
+ */
+public class TwoCPU {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		String s = sc.next();
@@ -18,24 +28,19 @@ public class TwoCPU {// 其实是个背包问题
 				i++;
 			}
 			sc.close();
-			Arrays.sort(a);
-			int[][] F = new int[n][(sum >> 1) + 1];
+			Arrays.sort(a);// 这一步是必须的
+			final int len = sum >> 1;
+			int[][] F = new int[n][(len) + 1];//必须是二维数组
+			if (a[n - 1] > len) {
+				System.out.println(sum - a[n - 1]);
+				return;
+			}
 			for (i = 1; i < n; i++) {
-
-				if (a[i] > (sum >> 1)) {
-					F[n - 1][sum >> 1] = sum - a[i];
-					break;
-				}
-				for (int j = a[0]; j <= (sum >> 1); j++) {// 其实这里可以直接令j =
-															// 0,而我是令他等于最小的值，可以少计算一些不必要的
-					if (j < a[i]) // 如果a[i]比边界都大，那肯定就不是子集
-						F[i][j] = F[i - 1][j];
-					else
-						F[i][j] = Math.max(F[i - 1][j], F[i - 1][j - a[i]]
-								+ a[i]);
+				for (int j = a[i]; j <= len; j++) {
+					F[i][j] = Math.max(F[i - 1][j], F[i - 1][j - a[i]] + a[i]);
 				}
 			}
-			int c = (sum - F[n - 1][sum >> 1]) << 10;
+			int c = (sum - F[n - 1][len]) << 10;
 			System.out.println(c);
 		}
 	}

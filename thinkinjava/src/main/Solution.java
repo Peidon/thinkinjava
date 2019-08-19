@@ -1,31 +1,44 @@
 package main;
 
-import common.TreeNode;
-
 class Solution {
-	static public boolean isValidBST(TreeNode root) {
-		if (root == null)
-			return true;
-		if (root.left != null)
-			if (!isValidBST(root.left) || getMax(root.left) >= root.val)
-				return false;
-		if (root.right != null)
-			if (!isValidBST(root.right) || getMin(root.right) <= root.val)
-				return false;
-		return true;
+	public static void main(String[] args) {
+		System.out.println(jump(new int[] {1,2,3,4}));
+	}
+	
+	static public int jump(int[] nums) {
+		int fur = 0,end = nums.length - 1, jump = 0, step = 1,span = nums[0];
+		if(end == 0)
+			return 0;
+		if(span >= end)
+			return 1;
+		for (int i = 1; i < end; i++) {
+			jump = nums[i] + i;
+			if(jump > fur){
+				fur = jump;
+			}
+			if(fur >= end)
+				return step + 1;
+			if(i == span){
+				step = step + 1;
+				span = fur;
+			}
+		}
+		return step;
 	}
 
-	static private int getMin(TreeNode root) {
-		while (root.left != null) {
-			root = root.left;
+	static public boolean canJump(int[] nums) {
+		int fur = 0; // 此前的最远距离
+		int end = nums.length - 1;
+		int jump = 0;// 从第 j 点起跳，更新最远距离
+		for (int j = 0; j <= fur && j <= end; j++) {// j <= fur
+			jump = nums[j] + j;
+			if (jump >= end) {
+				return true;
+			}
+			if (jump > fur) {
+				fur = jump;
+			}
 		}
-		return root.val;
-	}
-
-	static private int getMax(TreeNode root) {
-		while (root.right != null) {
-			root = root.right;
-		}
-		return root.val;
+		return false;
 	}
 }
