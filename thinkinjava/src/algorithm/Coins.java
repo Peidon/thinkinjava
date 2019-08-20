@@ -22,7 +22,21 @@ public class Coins {
 				F[j] = F[j] + F[j - coins[i]];
 			}
 		}
-		System.out.println(F[n]);
+		System.out.println("F[] : " + F[n]);
+		System.out.println("f() : " + Coins.f(coins, 5, n));
 		cin.close();
+	}
+
+	static int f(int[] coins, int i, int j){
+		if(i == 0 || j == 0) return 1;
+		int sum = 0;
+		int k = 1;
+		int tmp = j;
+		while(tmp >= 0){
+			sum += f(coins,i - 1, tmp);
+			tmp = j - k * coins[i];
+			k++;
+		}
+		return sum;
 	}
 }
