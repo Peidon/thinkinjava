@@ -24,7 +24,6 @@ public class PolishNotation {
 				continue;
 			default:
 				s.push(Integer.parseInt(tokens[i]));
-				continue;
 			}
 		}
 		return s.pop();
