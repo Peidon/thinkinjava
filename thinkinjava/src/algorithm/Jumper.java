@@ -10,24 +10,18 @@ class Jumper {
 	 * @param nums 代表一组落脚点，每个数组元素的值代表从这个落脚点起跳的最远距离
 	 * @return 到达终点的最少步数
 	 */
-	static public int jump(int[] nums) {
-		int fur = 0,end = nums.length - 1, jump = 0, step = 1,span = nums[0];
-		//span 代表一个位置，到达这之后必须再加一步才能到更远的位置
-		//end 代表当前位置与终点的距离
-		if(end == 0)
-			return 0;
-		if(span >= end)
-			return 1;
-		for (int i = 1; i < end; i++) { 
-			jump = nums[i] + i; //遍历第Step + 1步能达到的位置
-			if(jump > fur){
-				fur = jump;
-			}
-			if(fur >= end)
-				return step + 1;
-			if(i == span){//实际遍历到 i 之前的最远距离(span)时，step + 1
-				step = step + 1;
-				span = fur;
+	static private int jump(int[] nums) {
+		int step = 0, location = 0;
+		final int end = nums.length - 1;
+		if(end > 0) step = 1;
+		int furthest = location + nums[0]; // temp value in every span
+		while(furthest < end){
+			step ++;
+			for(int i = location + 1, len = furthest; i <= len; i++){
+				if(nums[i] + i > furthest){
+					furthest = nums[i] + i;
+					location = i;
+				}
 			}
 		}
 		return step;

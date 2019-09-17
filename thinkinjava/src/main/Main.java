@@ -1,46 +1,30 @@
 package main;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+	/*
+	input: n d local[], n = local.len, any j > i, local[j] - local[i] <= d
+	output: summary of combinations of three in local
+	 */
+
 	public static void main(String[] args) {
 		Scanner cin = new Scanner(System.in);
 		final int n = cin.nextInt();
-		cin.nextLine();
-		String input = cin.nextLine();
-		String[] nums = new String[n];
-		String[] opts;
-		if (n > 1) {
-			opts = new String[n - 1];
-			String[] chs = input.split(" ");
-			for (int i = 0; i < chs.length; i++) {
-				if ((i & 1) == 1) opts[(i - 1) >> 1] = chs[i];
-				else nums[i >> 1] = chs[i];
-			}
+		final int d = cin.nextInt();
+		final int[] local = new int[n];
+		for(int i = 0; i < n; i++) local[i] = cin.nextInt();
+		cin.close();
 
-			int numl = 0;
-			int preopi = 0;
-			while(numl < nums.length - 1){
-				int numr = numl + 1;
-				int opi = preopi + 1;
-				while (opi < n && opts[opi].equals(opts[preopi])) {
-					preopi = opi;
-					opi++;
-					numr = opi + 1;
-				}
-
-				final String[] temp = new String[numr - numl + 1];
-				System.arraycopy(nums, numl, temp, 0, temp.length);
-				Arrays.sort(temp);
-				int i = numl;
-				for (; i < temp.length - 1; i++){
-					System.out.print(temp[i] + " " + opts[opi - 1] + " ");
-				}
-				System.out.print(temp[i]);
-				numl = i + 1;
-			}
+		long count = 0;
+		int right = 2;
+		int left = 0;
+		while(right < n){
+			while(left < right && local[right] - local[left] > d) left ++;
+			final int m = right - left;
+			if(m >= 2) count += m * (m -1) / 2;
+			right ++;
 		}
-		else System.out.println(input);
+		System.out.println(count % 99997867);
 	}
 }
