@@ -60,10 +60,10 @@ public class Anniversary {
 				final int limit) {
 			TreeSet<Integer> treeSet = new TreeSet<>();
 			treeSet.add(0);// 哨兵
-			int d = 0;
+			int d;
 			if (subs.isEmpty())
 				return treeSet;
-			Vertex v = null;
+			Vertex v;
 			for (int sub : subs) {
 				v = vset[sub];
 				d = w[sub];
@@ -76,9 +76,9 @@ public class Anniversary {
 						treeSet.add(d + i);
 				}
 			}
-			Vertex v2 = null;
-			int en = 0;
-			for (int i = 0, l = subs.size(), sub1 = 0, sub2 = 0; i < l; i++) {
+			Vertex v2;
+			int en;
+			for (int i = 0, l = subs.size(), sub1, sub2; i < l; i++) {
 				for (int j = i + 1; j < l; j++) {
 					sub1 = subs.get(i);
 					sub2 = subs.get(j);
