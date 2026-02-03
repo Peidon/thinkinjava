@@ -4,7 +4,7 @@ out/
 !**/src/test/**/out/
 .kotlin
 .idea/
-thinking.iml
+thinkinjava.iml
 
 ### Eclipse ###
 .apt_generated
@@ -14,8 +14,6 @@ thinking.iml
 .settings
 .springBeans
 .sts4-cache
-thinkinjava/bin/
-java/bin/
 !**/bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
