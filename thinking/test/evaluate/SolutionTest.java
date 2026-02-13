@@ -1,15 +1,20 @@
 package evaluate;
 
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestEvaluate {
+import static org.junit.jupiter.api.Assertions.*;
+
+class SolutionTest {
+
 
     Solution so = new Solution();
 
-    public void Test0() {
+    @Test
+    void calcEquation() {
         List<List<String>> equations = new ArrayList<>();
         equations.add(new ArrayList<>(Arrays.asList("a","b")));
         equations.add(new ArrayList<>(Arrays.asList("b","c")));
@@ -21,7 +26,6 @@ public class TestEvaluate {
         queries.add(new ArrayList<>(Arrays.asList("a", "a")));
         queries.add(new ArrayList<>(Arrays.asList("x", "x")));
         var answers = so.calcEquation(equations, new double[]{2, 3}, queries);
-        assert Arrays.equals(answers, new double[]{6, 0.5, -1, 1, -1});
-        IO.println(Arrays.toString(answers));
+        assertArrayEquals(new double[]{6, 0.5, -1, 1, -1}, answers);
     }
 }
